@@ -22,4 +22,3 @@ class ViewController: UIViewController {
         photoCollectionView.dataSource = dataSource
     }
 }
-
