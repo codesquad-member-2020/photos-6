@@ -8,21 +8,18 @@
 
 import UIKit
 
-class ViewController: UIViewController, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 40
-    }
+class ViewController: UIViewController {
+    @IBOutlet weak var photoCollectionView: UICollectionView!
+    let dataSource = PhotoCollectionViewDataSource()
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-    }
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        setupCollectionView()
     }
-
-
+    
+    private func setupCollectionView(){
+        photoCollectionView.dataSource = dataSource
+    }
 }
 
