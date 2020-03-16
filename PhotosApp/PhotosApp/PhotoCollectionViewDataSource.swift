@@ -9,7 +9,6 @@
 import UIKit
 
 class PhotoCollectionViewDataSource: NSObject, UICollectionViewDataSource {
-    let CELL_IDENTIFIER = "photoCell"
     let TOTAL_CELL_COUNT = 40
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -17,7 +16,7 @@ class PhotoCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CELL_IDENTIFIER, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.CELL_IDENTIFIER, for: indexPath)
         cell.backgroundColor = UIColor(red: CGFloat.random(in: 0 ... 1), green: CGFloat.random(in: 0 ... 1), blue: CGFloat.random(in: 0 ... 1), alpha: 1)
         return cell
     }
