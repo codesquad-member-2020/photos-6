@@ -17,7 +17,11 @@ class PhotoCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.CELL_IDENTIFIER, for: indexPath)
-        cell.backgroundColor = UIColor(red: CGFloat.random(in: 0 ... 1), green: CGFloat.random(in: 0 ... 1), blue: CGFloat.random(in: 0 ... 1), alpha: 1)
+        cell.backgroundColor = UIColor(red: randomRGBValue(), green: randomRGBValue(), blue: randomRGBValue(), alpha: 1)
         return cell
+    }
+    
+    private func randomRGBValue() -> CGFloat {
+        return CGFloat.random(in: 0 ... 1)
     }
 }
