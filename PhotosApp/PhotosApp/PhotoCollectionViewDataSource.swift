@@ -10,9 +10,10 @@ import UIKit
 
 class PhotoCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     let CELL_IDENTIFIER = "photoCell"
+    let TOTAL_CELL_COUNT = 40
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 40
+        return TOTAL_CELL_COUNT
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
