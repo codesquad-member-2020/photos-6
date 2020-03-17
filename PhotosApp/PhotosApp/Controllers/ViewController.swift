@@ -11,9 +11,9 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet weak var photoCollectionView: UICollectionView!
-    let delegateFlowLayout = PhotoCollectionViewDelegateFlowLayout()
-    var dataSource: PhotoCollectionViewDataSource!
-    let navigationBarTitle = "Photos"
+    private let delegateFlowLayout = PhotoCollectionViewDelegateFlowLayout()
+    private let dataSource = PhotoCollectionViewDataSource()
+    private let navigationBarTitle = "Photos"
     
     @IBAction func addImageButtonTapped(_ sender: UIBarButtonItem) {
         dataSource.addImage()
@@ -24,15 +24,33 @@ class ViewController: UIViewController {
         
         setupCollectionView()
         setupNavigationBarTitle()
+        setupNotification()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .PhotoLibraryChangedNotification, object: nil)
     }
     
     private func setupNavigationBarTitle() {
         navigationItem.title = navigationBarTitle
     }
     
-    private func setupCollectionView(){
-        dataSource = PhotoCollectionViewDataSource(for: photoCollectionView)
+    private func setupCollectionView() {
         photoCollectionView.dataSource = dataSource
         photoCollectionView.delegate = delegateFlowLayout
+    }
+    
+    private func setupNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handlePhotoChanged), name: .PhotoLibraryChangedNotification, object: nil)
+    }
+    
+    @objc private func handlePhotoChanged(notification: Notification) {
+        guard let inserted = notification.userInfo?["inserted"] as? IndexSet else { return }
+        
+        DispatchQueue.main.sync {
+            photoCollectionView.performBatchUpdates({
+                photoCollectionView.insertItems(at: inserted.map { IndexPath(item: $0, section: 0) })
+            })
+        }
     }
 }

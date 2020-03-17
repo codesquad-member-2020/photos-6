@@ -12,7 +12,7 @@ import Photos
 class PhotoCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
     private(set) var fetchResult: PHFetchResult<PHAsset>!
-    let fetchOptions: PHFetchOptions = {
+    private let fetchOptions: PHFetchOptions = {
         let fetchOptions = PHFetchOptions()
         fetchOptions.includeAssetSourceTypes = .typeUserLibrary
         fetchOptions.includeAllBurstAssets = false
@@ -21,18 +21,17 @@ class PhotoCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         fetchOptions.fetchLimit = 40
         return fetchOptions
     }()
-    let imageManager = PHCachingImageManager()
-    let targetSize: CGSize = CGSize(width: 100, height: 100)
-    weak var photoCollectionView: UICollectionView?
+    private let imageManager = PHCachingImageManager()
+    private let targetSize: CGSize = CGSize(width: 100, height: 100)
     
-    init(for collectionView: UICollectionView) {
+    override init() {
         self.fetchResult = PHAsset.fetchAssets(with: fetchOptions)
-        self.photoCollectionView = collectionView
         super.init()
         PHPhotoLibrary.shared().register(self)
     }
     
-    deinit {        PHPhotoLibrary.shared().unregisterChangeObserver(self)
+    deinit {
+        PHPhotoLibrary.shared().unregisterChangeObserver(self)
     }
     
     func updateFetchResult(_ fetchResult: PHFetchResult<PHAsset>) {
@@ -61,16 +60,13 @@ class PhotoCollectionViewDataSource: NSObject, UICollectionViewDataSource {
 
 extension PhotoCollectionViewDataSource: PHPhotoLibraryChangeObserver{
     func photoLibraryDidChange(_ changeInstance: PHChange) {
-        guard let photoCollectionView = photoCollectionView else { return }
-        DispatchQueue.main.sync {
-            guard let changes = changeInstance.changeDetails(for: fetchResult) else { return }
-            let fetchResult = changes.fetchResultAfterChanges
-            updateFetchResult(fetchResult)
-            guard changes.hasIncrementalChanges else { return }
-            photoCollectionView.performBatchUpdates({
-                guard let inserted = changes.insertedIndexes, inserted.count > 0 else { return }
-                photoCollectionView.insertItems(at: inserted.map { IndexPath(item: $0, section: 0) })
-            })
-        }
+        guard let changes = changeInstance.changeDetails(for: fetchResult) else { return }
+        let fetchResult = changes.fetchResultAfterChanges
+        updateFetchResult(fetchResult)
+        guard changes.hasIncrementalChanges else { return }
+        guard let inserted = changes.insertedIndexes, inserted.count > 0 else { return }
+        NotificationCenter.default.post(name: .PhotoLibraryChangedNotification,
+                                        object: nil,
+                                        userInfo: ["inserted": inserted])
     }
 }
