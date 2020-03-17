@@ -19,11 +19,10 @@ class PhotoCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        var cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.CELL_IDENTIFIER, for: indexPath)
-        let object = fetchResult.object(at: indexPath.item)
-        imageManager.requestImage(for: object, targetSize: targetSize, contentMode: .aspectFill, options: nil) { (image, _) in
-            let imageView = UIImageView(image: image)
-            cell.addSubview(imageView)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.CELL_IDENTIFIER, for: indexPath) as! PhotoCell
+        let asset = fetchResult.object(at: indexPath.item)
+        imageManager.requestImage(for: asset, targetSize: targetSize, contentMode: .aspectFill, options: nil) { (image, _) in
+            cell.thumbnailImage = image
         }
         return cell
     }

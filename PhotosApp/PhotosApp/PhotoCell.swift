@@ -9,21 +9,11 @@
 import UIKit
 
 class PhotoCell: UICollectionViewCell {
+    @IBOutlet weak var thumbnailImageView: UIImageView!
     static let CELL_IDENTIFIER = "photoCell"
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupUI()
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setupUI()
-    }
-    
-    private func setupUI(){
-        translatesAutoresizingMaskIntoConstraints = false
-        widthAnchor.constraint(equalToConstant: 80).isActive = true
-        heightAnchor.constraint(equalToConstant: 80).isActive = true
+    var thumbnailImage : UIImage! {
+        didSet {
+            thumbnailImageView.image = thumbnailImage
+        }
     }
 }

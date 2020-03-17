@@ -19,7 +19,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="TVc-in-tuS">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="2zP-17-eXm">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="2zP-17-eXm">
                                     <size key="itemSize" width="80" height="80"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -29,11 +29,25 @@
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photoCell" id="KPk-mo-PPn" customClass="PhotoCell" customModule="PhotosApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="eJb-7c-kj3">
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="hFH-q4-Xgu">
                                             <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fx8-mh-qGK">
+                                                    <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="fx8-mh-qGK" secondAttribute="trailing" id="Jah-Yc-zwE"/>
+                                                <constraint firstAttribute="bottom" secondItem="fx8-mh-qGK" secondAttribute="bottom" id="Qdi-wT-cop"/>
+                                                <constraint firstItem="fx8-mh-qGK" firstAttribute="top" secondItem="hFH-q4-Xgu" secondAttribute="top" id="Vhg-5X-Gnt"/>
+                                                <constraint firstItem="fx8-mh-qGK" firstAttribute="leading" secondItem="hFH-q4-Xgu" secondAttribute="leading" id="hFc-nm-Upt"/>
+                                            </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="80" height="80"/>
+                                        <connections>
+                                            <outlet property="thumbnailImageView" destination="fx8-mh-qGK" id="Kd1-Fx-phn"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>

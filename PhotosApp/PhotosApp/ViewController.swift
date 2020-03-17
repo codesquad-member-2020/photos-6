@@ -12,6 +12,7 @@ import Photos
 class ViewController: UIViewController {
     
     @IBOutlet weak var photoCollectionView: UICollectionView!
+    let delegateFlowLayout = PhotoCollectionViewDelegateFlowLayout()
     let dataSource = PhotoCollectionViewDataSource()
     let NAVIGATIONBAR_TITLE = "Photos"
     
@@ -28,5 +29,6 @@ class ViewController: UIViewController {
     
     private func setupCollectionView(){
         photoCollectionView.dataSource = dataSource
+        photoCollectionView.delegate = delegateFlowLayout
     }
 }
