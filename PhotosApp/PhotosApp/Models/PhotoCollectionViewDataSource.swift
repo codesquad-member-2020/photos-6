@@ -23,9 +23,16 @@ class PhotoCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     }()
     let imageManager = PHCachingImageManager()
     let targetSize: CGSize = CGSize(width: 100, height: 100)
+    weak var photoCollectionView: UICollectionView?
     
-    override init() {
+    init(for collectionView: UICollectionView) {
         self.fetchResult = PHAsset.fetchAssets(with: fetchOptions)
+        self.photoCollectionView = collectionView
+        super.init()
+        PHPhotoLibrary.shared().register(self)
+    }
+    
+    deinit {        PHPhotoLibrary.shared().unregisterChangeObserver(self)
     }
     
     func updateFetchResult(_ fetchResult: PHFetchResult<PHAsset>) {
@@ -43,5 +50,27 @@ class PhotoCollectionViewDataSource: NSObject, UICollectionViewDataSource {
             cell.thumbnailImage = image
         }
         return cell
+    }
+    
+    func addImage() {
+        PHPhotoLibrary.shared().performChanges({
+            PHAssetChangeRequest.creationRequestForAsset(from: #imageLiteral(resourceName: "codesquad"))
+        }, completionHandler: nil)
+    }
+}
+
+extension PhotoCollectionViewDataSource: PHPhotoLibraryChangeObserver{
+    func photoLibraryDidChange(_ changeInstance: PHChange) {
+        guard let photoCollectionView = photoCollectionView else { return }
+        DispatchQueue.main.sync {
+            guard let changes = changeInstance.changeDetails(for: fetchResult) else { return }
+            let fetchResult = changes.fetchResultAfterChanges
+            updateFetchResult(fetchResult)
+            guard changes.hasIncrementalChanges else { return }
+            photoCollectionView.performBatchUpdates({
+                guard let inserted = changes.insertedIndexes, inserted.count > 0 else { return }
+                photoCollectionView.insertItems(at: inserted.map { IndexPath(item: $0, section: 0) })
+            })
+        }
     }
 }

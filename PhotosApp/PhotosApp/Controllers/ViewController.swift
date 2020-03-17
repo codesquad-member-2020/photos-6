@@ -7,19 +7,16 @@
 //
 
 import UIKit
-import Photos
 
 class ViewController: UIViewController {
     
     @IBOutlet weak var photoCollectionView: UICollectionView!
     let delegateFlowLayout = PhotoCollectionViewDelegateFlowLayout()
-    let dataSource = PhotoCollectionViewDataSource()
+    var dataSource: PhotoCollectionViewDataSource!
     let navigationBarTitle = "Photos"
     
     @IBAction func addImageButtonTapped(_ sender: UIBarButtonItem) {
-        PHPhotoLibrary.shared().performChanges({
-            PHAssetChangeRequest.creationRequestForAsset(from: #imageLiteral(resourceName: "codesquad"))
-        }, completionHandler: nil)
+        dataSource.addImage()
     }
     
     override func viewDidLoad() {
@@ -27,11 +24,6 @@ class ViewController: UIViewController {
         
         setupCollectionView()
         setupNavigationBarTitle()
-        PHPhotoLibrary.shared().register(self)
-    }
-    
-    deinit {
-        PHPhotoLibrary.shared().unregisterChangeObserver(self)
     }
     
     private func setupNavigationBarTitle() {
@@ -39,22 +31,8 @@ class ViewController: UIViewController {
     }
     
     private func setupCollectionView(){
+        dataSource = PhotoCollectionViewDataSource(for: photoCollectionView)
         photoCollectionView.dataSource = dataSource
         photoCollectionView.delegate = delegateFlowLayout
-    }
-}
-
-extension ViewController: PHPhotoLibraryChangeObserver {
-    func photoLibraryDidChange(_ changeInstance: PHChange) {
-        DispatchQueue.main.sync {
-            guard let changes = changeInstance.changeDetails(for: dataSource.fetchResult) else { return }
-            let fetchResult = changes.fetchResultAfterChanges
-            dataSource.updateFetchResult(fetchResult)
-            guard changes.hasIncrementalChanges else { return }
-            photoCollectionView.performBatchUpdates({
-                guard let inserted = changes.insertedIndexes, inserted.count > 0 else { return }
-                photoCollectionView.insertItems(at: inserted.map { IndexPath(item: $0, section: 0) })
-            })
-        }
     }
 }
