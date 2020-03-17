@@ -10,6 +10,7 @@ import UIKit
 import Photos
 
 class PhotoCollectionViewDataSource: NSObject, UICollectionViewDataSource {
+    
     private(set) var fetchResult: PHFetchResult<PHAsset> = PHAsset.fetchAssets(with: nil)
     let imageManager = PHCachingImageManager()
     let targetSize: CGSize = CGSize(width: 100, height: 100)
