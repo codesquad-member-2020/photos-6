@@ -11,9 +11,19 @@ import Photos
 
 class PhotoCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
-    private(set) var fetchResult: PHFetchResult<PHAsset> = PHAsset.fetchAssets(with: nil)
+    private(set) var fetchResult: PHFetchResult<PHAsset>!
     let imageManager = PHCachingImageManager()
     let targetSize: CGSize = CGSize(width: 100, height: 100)
+    
+    override init() {
+        let fetchOptions = PHFetchOptions()
+        fetchOptions.includeAssetSourceTypes = .typeUserLibrary
+        fetchOptions.includeAllBurstAssets = false
+        fetchOptions.includeHiddenAssets = false
+        fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        fetchOptions.fetchLimit = 40
+        self.fetchResult = PHAsset.fetchAssets(with: fetchOptions)
+    }
     
     func updateFetchResult(_ fetchResult: PHFetchResult<PHAsset>) {
         self.fetchResult = fetchResult
