@@ -10,9 +10,13 @@ import UIKit
 import Photos
 
 class PhotoCollectionViewDataSource: NSObject, UICollectionViewDataSource {
-    var fetchResult: PHFetchResult<PHAsset> = PHAsset.fetchAssets(with: nil)
+    private(set) var fetchResult: PHFetchResult<PHAsset> = PHAsset.fetchAssets(with: nil)
     let imageManager = PHCachingImageManager()
     let targetSize: CGSize = CGSize(width: 100, height: 100)
+    
+    func updateFetchResult(_ fetchResult: PHFetchResult<PHAsset>) {
+        self.fetchResult = fetchResult
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return fetchResult.count

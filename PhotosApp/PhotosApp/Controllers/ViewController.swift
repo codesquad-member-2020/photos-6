@@ -16,11 +16,22 @@ class ViewController: UIViewController {
     let dataSource = PhotoCollectionViewDataSource()
     let NAVIGATIONBAR_TITLE = "Photos"
     
+    @IBAction func addImageButtonTapped(_ sender: UIBarButtonItem) {
+        PHPhotoLibrary.shared().performChanges({
+            PHAssetChangeRequest.creationRequestForAsset(from: #imageLiteral(resourceName: "codesquad"))
+        }, completionHandler: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupCollectionView()
         setupNavigationBarTitle()
+        PHPhotoLibrary.shared().register(self)
+    }
+    
+    deinit {
+        PHPhotoLibrary.shared().unregisterChangeObserver(self)
     }
     
     private func setupNavigationBarTitle() {
@@ -30,5 +41,23 @@ class ViewController: UIViewController {
     private func setupCollectionView(){
         photoCollectionView.dataSource = dataSource
         photoCollectionView.delegate = delegateFlowLayout
+    }
+}
+
+extension ViewController: PHPhotoLibraryChangeObserver {
+    func photoLibraryDidChange(_ changeInstance: PHChange) {
+        DispatchQueue.main.sync {
+            if let changes = changeInstance.changeDetails(for: dataSource.fetchResult) {
+                let fetchResult = changes.fetchResultAfterChanges
+                dataSource.updateFetchResult(fetchResult)
+                if changes.hasIncrementalChanges {
+                    photoCollectionView.performBatchUpdates({
+                        if let inserted = changes.insertedIndexes, inserted.count > 0 {
+                            photoCollectionView.insertItems(at: inserted.map { IndexPath(item: $0, section: 0) })
+                        }
+                    }, completion: nil)
+                }
+            }
+        }
     }
 }
