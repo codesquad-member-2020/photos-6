@@ -47,17 +47,14 @@ class ViewController: UIViewController {
 extension ViewController: PHPhotoLibraryChangeObserver {
     func photoLibraryDidChange(_ changeInstance: PHChange) {
         DispatchQueue.main.sync {
-            if let changes = changeInstance.changeDetails(for: dataSource.fetchResult) {
-                let fetchResult = changes.fetchResultAfterChanges
-                dataSource.updateFetchResult(fetchResult)
-                if changes.hasIncrementalChanges {
-                    photoCollectionView.performBatchUpdates({
-                        if let inserted = changes.insertedIndexes, inserted.count > 0 {
-                            photoCollectionView.insertItems(at: inserted.map { IndexPath(item: $0, section: 0) })
-                        }
-                    }, completion: nil)
-                }
-            }
+            guard let changes = changeInstance.changeDetails(for: dataSource.fetchResult) else { return }
+            let fetchResult = changes.fetchResultAfterChanges
+            dataSource.updateFetchResult(fetchResult)
+            guard changes.hasIncrementalChanges else { return }
+            photoCollectionView.performBatchUpdates({
+                guard let inserted = changes.insertedIndexes, inserted.count > 0 else { return }
+                photoCollectionView.insertItems(at: inserted.map { IndexPath(item: $0, section: 0) })
+            })
         }
     }
 }
