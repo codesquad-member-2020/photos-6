@@ -62,18 +62,42 @@
 		380348EA241F44CB002C91FC /* PhotosApp */ = {
 			isa = PBXGroup;
 			children = (
+				382CA0232420A99700A297AB /* Views */,
+				382CA0222420A98E00A297AB /* Models */,
+				382CA0212420A98300A297AB /* Controllers */,
 				380348EB241F44CB002C91FC /* AppDelegate.swift */,
 				380348ED241F44CB002C91FC /* SceneDelegate.swift */,
-				380348EF241F44CB002C91FC /* ViewController.swift */,
 				380348F1241F44CB002C91FC /* Main.storyboard */,
 				380348F4241F44CD002C91FC /* Assets.xcassets */,
 				380348F6241F44CD002C91FC /* LaunchScreen.storyboard */,
 				380348F9241F44CD002C91FC /* Info.plist */,
+			);
+			path = PhotosApp;
+			sourceTree = "<group>";
+		};
+		382CA0212420A98300A297AB /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				380348EF241F44CB002C91FC /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		382CA0222420A98E00A297AB /* Models */ = {
+			isa = PBXGroup;
+			children = (
 				6A1FB8A7241F48D000483229 /* PhotoCollectionViewDataSource.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		382CA0232420A99700A297AB /* Views */ = {
+			isa = PBXGroup;
+			children = (
 				6A1FB8A9241F54B800483229 /* PhotoCell.swift */,
 				6A559D922420A20D00028232 /* PhotoCollectionViewDelegateFlowLayout.swift */,
 			);
-			path = PhotosApp;
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
