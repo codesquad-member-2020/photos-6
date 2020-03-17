@@ -7,21 +7,24 @@
 //
 
 import UIKit
+import Photos
 
 class PhotoCollectionViewDataSource: NSObject, UICollectionViewDataSource {
-    let TOTAL_CELL_COUNT = 40
+    var fetchResult: PHFetchResult<PHAsset> = PHAsset.fetchAssets(with: nil)
+    let imageManager = PHCachingImageManager()
+    let targetSize: CGSize = CGSize(width: 100, height: 100)
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return TOTAL_CELL_COUNT
+        return fetchResult.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.CELL_IDENTIFIER, for: indexPath)
-        cell.backgroundColor = UIColor(red: randomRGBValue(), green: randomRGBValue(), blue: randomRGBValue(), alpha: 1)
+        var cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.CELL_IDENTIFIER, for: indexPath)
+        let object = fetchResult.object(at: indexPath.item)
+        imageManager.requestImage(for: object, targetSize: targetSize, contentMode: .aspectFill, options: nil) { (image, _) in
+            let imageView = UIImageView(image: image)
+            cell.addSubview(imageView)
+        }
         return cell
-    }
-    
-    private func randomRGBValue() -> CGFloat {
-        return CGFloat.random(in: 0 ... 1)
     }
 }

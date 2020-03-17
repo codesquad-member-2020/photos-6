@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import Photos
 
 class ViewController: UIViewController {
+    
     @IBOutlet weak var photoCollectionView: UICollectionView!
     let dataSource = PhotoCollectionViewDataSource()
     let NAVIGATIONBAR_TITLE = "Photos"
