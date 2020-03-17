@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var photoCollectionView: UICollectionView!
     let delegateFlowLayout = PhotoCollectionViewDelegateFlowLayout()
     let dataSource = PhotoCollectionViewDataSource()
-    let NAVIGATIONBAR_TITLE = "Photos"
+    let navigationBarTitle = "Photos"
     
     @IBAction func addImageButtonTapped(_ sender: UIBarButtonItem) {
         PHPhotoLibrary.shared().performChanges({
@@ -35,7 +35,7 @@ class ViewController: UIViewController {
     }
     
     private func setupNavigationBarTitle() {
-        navigationItem.title = NAVIGATIONBAR_TITLE
+        navigationItem.title = navigationBarTitle
     }
     
     private func setupCollectionView(){

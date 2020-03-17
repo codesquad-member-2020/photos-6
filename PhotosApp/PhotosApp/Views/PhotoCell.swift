@@ -10,7 +10,7 @@ import UIKit
 
 class PhotoCell: UICollectionViewCell {
     @IBOutlet weak var thumbnailImageView: UIImageView!
-    static let CELL_IDENTIFIER = "photoCell"
+    static let cellIdentifier = "photoCell"
     var thumbnailImage : UIImage! {
         didSet {
             thumbnailImageView.image = thumbnailImage
