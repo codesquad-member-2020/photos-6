@@ -10,7 +10,7 @@ import Foundation
 
 class DoodleDataManager {
     let doodleURL = "https://public.codesquad.kr/jk/doodle.json"
-    private var doodleImages: [DoodleImage] = []
+    private var doodleImages: [DoodleImage]?
     
     init() {
         decodeJSON()
@@ -19,17 +19,14 @@ class DoodleDataManager {
     private func decodeJSON() {
         guard let url = URL(string: doodleURL) else { return }
         URLSession.shared.dataTask(with: url) { (data, _, err) in
-            if let err = err {
-                print(err)
-            }
-            guard let data = data else { return }
+            guard err == nil else { self.doodleImages = nil; return }
+            guard let data = data else { self.doodleImages = nil; return }
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .formatted(.doodleDateFormatter)
             do {
                 self.doodleImages = try decoder.decode([DoodleImage].self, from: data)
-                print(self.doodleImages)
             } catch {
-                print(error)
+                self.doodleImages = nil
             }
         }
     }
