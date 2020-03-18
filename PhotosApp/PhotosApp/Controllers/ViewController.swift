@@ -19,9 +19,16 @@ class ViewController: UIViewController {
         dataSource.addImage()
     }
     
+    @IBAction func presentDoodleCollectionViewController(_ sender: UIBarButtonItem) {
+        let layout = UICollectionViewFlowLayout()
+        let doodleCollectionView = DoodleCollectionViewController(collectionViewLayout: layout)
+        let navigationController = UINavigationController(rootViewController: doodleCollectionView)
+        navigationController.modalPresentationStyle = .overFullScreen
+        self.present(navigationController, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupCollectionView()
         setupNavigationBarTitle()
         setupNotification()
