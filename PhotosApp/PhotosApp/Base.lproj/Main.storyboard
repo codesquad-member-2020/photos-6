@@ -62,9 +62,14 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="fHI-pz-ZQR">
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="add" id="brn-dS-ct8">
+                            <connections>
+                                <action selector="getAndAddImageButtonTapped:" destination="BYZ-38-t0r" id="V1p-Dl-N3W"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Add" id="s16-5p-UmU">
                             <connections>
-                                <action selector="addImageButtonTapped:" destination="BYZ-38-t0r" id="AqC-Fb-mqf"/>
+                                <action selector="addImageButtonTapped:" destination="BYZ-38-t0r" id="3l4-kz-jyo"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -74,7 +79,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1047.8260869565217" y="137.94642857142856"/>
+            <point key="canvasLocation" x="1028" y="138"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zTd-iv-eOq">
