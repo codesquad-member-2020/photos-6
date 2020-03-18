@@ -7,15 +7,14 @@
 //
 
 import UIKit
-import Photos
 
 class DoodleCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = UICollectionViewCell()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DoodleImageCell.cellIdentifier, for: indexPath) as! DoodleImageCell
         return cell
     }
 }

@@ -9,7 +9,6 @@
 import UIKit
 
 class DoodleCollectionViewController: UICollectionViewController {
-    private let reuseIdentifier = "Cell"
     private let navigationBarTitle = "Doodles"
     private let delegateFlowLayout = DoodleCollectionViewDelegateFlowLayout()
     private let dataSource = DoodleCollectionViewDataSource()
@@ -23,7 +22,7 @@ class DoodleCollectionViewController: UICollectionViewController {
     private func setupCollectionView() {
         self.collectionView.dataSource = dataSource
         self.collectionView.delegate = delegateFlowLayout
-        self.collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView.register(DoodleImageCell.self, forCellWithReuseIdentifier: DoodleImageCell.cellIdentifier)
         self.collectionView.backgroundColor = .darkGray
     }
 

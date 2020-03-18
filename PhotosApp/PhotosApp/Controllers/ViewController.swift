@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func getAndAddImageButtonTapped(_ sender: UIBarButtonItem) {
-        let layout = UICollectionViewLayout()
+        let layout = UICollectionViewFlowLayout()
         let doodleCollectionView = DoodleCollectionViewController(collectionViewLayout: layout)
         let navigationController = UINavigationController(rootViewController: doodleCollectionView)
         navigationController.modalPresentationStyle = .overFullScreen
@@ -29,7 +29,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupCollectionView()
         setupNavigationBarTitle()
         setupNotification()
