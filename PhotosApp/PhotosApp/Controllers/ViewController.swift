@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         dataSource.addImage()
     }
     
-    @IBAction func getAndAddImageButtonTapped(_ sender: UIBarButtonItem) {
+    @IBAction func presentDoodleCollectionViewController(_ sender: UIBarButtonItem) {
         let layout = UICollectionViewFlowLayout()
         let doodleCollectionView = DoodleCollectionViewController(collectionViewLayout: layout)
         let navigationController = UINavigationController(rootViewController: doodleCollectionView)
