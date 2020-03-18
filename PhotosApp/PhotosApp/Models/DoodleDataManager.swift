@@ -17,15 +17,8 @@ class DoodleDataManager {
         decodeJSON()
     }
     
-    func downloadImages(completion: @escaping (UIImage) -> ()) {
-        doodleImages?.forEach { doodleImage in
-            DispatchQueue.global().async {
-                self.requestImage(doodleImage: doodleImage, completion: completion)
-            }
-        }
-    }
-    
-    private func requestImage(doodleImage: DoodleImage, completion: @escaping (UIImage) -> ()) {
+    func fetchImage(index: Int, completion: @escaping (UIImage) -> ()) {
+        guard let doodleImage = doodleImages?[index] else { return }
         URLSession.shared.dataTask(with: doodleImage.imageURL) { (data, _, err) in
             guard let data = data else { return }
             guard let image = UIImage(data: data) else { return }
