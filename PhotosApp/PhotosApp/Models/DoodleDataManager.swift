@@ -9,6 +9,7 @@
 import Foundation
 
 class DoodleDataManager {
+    
     let doodleURL = "https://public.codesquad.kr/jk/doodle.json"
     private var doodleImages: [DoodleImage]?
     
