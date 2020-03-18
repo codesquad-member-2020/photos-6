@@ -6,7 +6,7 @@
 //  Copyright © 2020 corykim0829. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class DoodleDataManager {
     
@@ -15,6 +15,22 @@ class DoodleDataManager {
     
     init() {
         decodeJSON()
+    }
+    
+    func downloadImages(completion: @escaping (UIImage) -> ()) {
+        doodleImages?.forEach { doodleImage in
+            DispatchQueue.global().async {
+                self.requestImage(doodleImage: doodleImage, completion: completion)
+            }
+        }
+    }
+    
+    private func requestImage(doodleImage: DoodleImage, completion: @escaping (UIImage) -> ()) {
+        URLSession.shared.dataTask(with: doodleImage.imageURL) { (data, _, err) in
+            guard let data = data else { return }
+            guard let image = UIImage(data: data) else { return }
+            completion(image)
+        }
     }
     
     private func decodeJSON() {
