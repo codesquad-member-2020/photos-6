@@ -10,12 +10,12 @@ import Foundation
 
 struct DoodleImage: Codable {
     let title: String
-    let imageUrl: URL
+    let imageURL: URL
     let date: Date
     
     enum CodingKeys: String, CodingKey {
         case title
-        case imageUrl = "image"
+        case imageURL = "image"
         case date
     }
 }

@@ -9,7 +9,7 @@
 import Foundation
 
 class DoodleDataManager {
-    let urlString = "https://public.codesquad.kr/jk/doodle.json"
+    let doodleURL = "https://public.codesquad.kr/jk/doodle.json"
     private var doodleImages: [DoodleImage] = []
     
     init() {
@@ -17,7 +17,7 @@ class DoodleDataManager {
     }
     
     private func decodeJSON() {
-        guard let url = URL(string: urlString) else { return }
+        guard let url = URL(string: doodleURL) else { return }
         URLSession.shared.dataTask(with: url) { (data, _, err) in
             if let err = err {
                 print(err)
