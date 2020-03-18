@@ -205,9 +205,11 @@
 			files = (
 				6A067F742421F5BF005A3701 /* DoodleCollectionViewDelegateFlowLayout.swift in Sources */,
 				380348F0241F44CB002C91FC /* ViewController.swift in Sources */,
+				6A78D8092421B91B00A27BDE /* DoodleCollectionViewController.swift in Sources */,
 				38CCC2A22421B80700E12D82 /* DoodleImage.swift in Sources */,
 				6A1FB8AA241F54B800483229 /* PhotoCell.swift in Sources */,
 				6A559D932420A20D00028232 /* PhotoCollectionViewDelegateFlowLayout.swift in Sources */,
+				6A067F782421FB15005A3701 /* DoodleImageCell.swift in Sources */,
 				38CCC2A42421B81F00E12D82 /* DateFormatter.swift in Sources */,
 				380348EC241F44CB002C91FC /* AppDelegate.swift in Sources */,
 				6A067F762421F762005A3701 /* DoodleCollectionViewDataSource.swift in Sources */,
