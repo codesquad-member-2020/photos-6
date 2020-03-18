@@ -18,13 +18,13 @@ class DoodleCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         setupCollectionView()
         setupNavigationBar()
+        setupUI()
     }
     
     private func setupCollectionView() {
         self.collectionView.dataSource = dataSource
         self.collectionView.delegate = delegateFlowLayout
         self.collectionView.register(DoodleImageCell.self, forCellWithReuseIdentifier: DoodleImageCell.identifier)
-        self.collectionView.backgroundColor = .darkGray
     }
 
     private func setupNavigationBar() {
@@ -34,5 +34,9 @@ class DoodleCollectionViewController: UICollectionViewController {
     
     @objc func closeButtonTapped() {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    private func setupUI() {
+        self.collectionView.backgroundColor = .darkGray
     }
 }
