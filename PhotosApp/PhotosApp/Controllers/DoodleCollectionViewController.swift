@@ -22,7 +22,7 @@ class DoodleCollectionViewController: UICollectionViewController {
     private func setupCollectionView() {
         self.collectionView.dataSource = dataSource
         self.collectionView.delegate = delegateFlowLayout
-        self.collectionView.register(DoodleImageCell.self, forCellWithReuseIdentifier: DoodleImageCell.cellIdentifier)
+        self.collectionView.register(DoodleImageCell.self, forCellWithReuseIdentifier: DoodleImageCell.identifier)
         self.collectionView.backgroundColor = .darkGray
     }
 

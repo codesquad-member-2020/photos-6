@@ -10,7 +10,7 @@ import UIKit
 
 class DoodleImageCell: UICollectionViewCell {
     
-    static let cellIdentifier = "doodleImageCell"
+    static let identifier = "doodleImageCell"
     let doodleImageView : UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
