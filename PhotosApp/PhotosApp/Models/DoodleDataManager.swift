@@ -6,14 +6,24 @@
 //  Copyright © 2020 corykim0829. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class DoodleDataManager {
+    
     let doodleURL = "https://public.codesquad.kr/jk/doodle.json"
     private var doodleImages: [DoodleImage]?
     
     init() {
         decodeJSON()
+    }
+    
+    func fetchImage(index: Int, completion: @escaping (UIImage) -> ()) {
+        guard let doodleImage = doodleImages?[index] else { return }
+        URLSession.shared.dataTask(with: doodleImage.imageURL) { (data, _, err) in
+            guard let data = data else { return }
+            guard let image = UIImage(data: data) else { return }
+            completion(image)
+        }
     }
     
     private func decodeJSON() {
