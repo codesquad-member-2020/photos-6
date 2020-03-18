@@ -9,6 +9,7 @@
 import UIKit
 
 class DoodleCollectionViewController: UICollectionViewController {
+    
     private let navigationBarTitle = "Doodles"
     private let delegateFlowLayout = DoodleCollectionViewDelegateFlowLayout()
     private let dataSource = DoodleCollectionViewDataSource()
