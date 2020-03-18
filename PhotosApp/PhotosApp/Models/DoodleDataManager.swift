@@ -34,24 +34,3 @@ class DoodleDataManager {
         }
     }
 }
-
-extension DateFormatter {
-    static let doodleDateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyyMMdd"
-        dateFormatter.locale = Locale(identifier: "ko_KR")
-        return dateFormatter
-    }()
-}
-
-struct DoodleImage: Codable {
-    let title: String
-    let imageUrl: URL
-    let date: Date
-    
-    enum CodingKeys: String, CodingKey {
-        case title
-        case imageUrl = "image"
-        case date
-    }
-}
