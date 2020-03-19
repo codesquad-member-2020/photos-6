@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Photos
 
 class DoodleCollectionViewController: UICollectionViewController {
     
@@ -87,7 +88,8 @@ extension DoodleCollectionViewController {
     @objc func saveImage() {
         guard let indexPath = indexPathOfSelectedCell else { return }
         let cell = collectionView.cellForItem(at: indexPath) as! DoodleImageCell
-        dataSource.saveImage(cell.doodleImage)
+        PHPhotoLibrary.shared().performChanges({
+            PHAssetChangeRequest.creationRequestForAsset(from: cell.doodleImage)
+        })
     }
 }
-                          

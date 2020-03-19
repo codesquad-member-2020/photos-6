@@ -26,10 +26,4 @@ class DoodleCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         }
         return cell
     }
-    
-    func saveImage(_ image: UIImage) {
-        PHPhotoLibrary.shared().performChanges({
-            PHAssetChangeRequest.creationRequestForAsset(from: image)
-        })
-    }
 }
