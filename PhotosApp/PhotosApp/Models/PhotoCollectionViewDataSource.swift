@@ -11,6 +11,7 @@ import Photos
 
 class PhotoCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
+    static let PhotoLibraryChangedNotification = NSNotification.Name(rawValue: "PhotoLibraryChangedNotification")
     private(set) var fetchResult: PHFetchResult<PHAsset>!
     private let fetchOptions: PHFetchOptions = {
         let fetchOptions = PHFetchOptions()
@@ -65,7 +66,7 @@ extension PhotoCollectionViewDataSource: PHPhotoLibraryChangeObserver{
         updateFetchResult(fetchResult)
         guard changes.hasIncrementalChanges else { return }
         guard let inserted = changes.insertedIndexes, inserted.count > 0 else { return }
-        NotificationCenter.default.post(name: .PhotoLibraryChangedNotification,
+        NotificationCenter.default.post(name: PhotoCollectionViewDataSource.PhotoLibraryChangedNotification,
                                         object: nil,
                                         userInfo: ["inserted": inserted])
     }

@@ -10,20 +10,33 @@ import UIKit
 
 class DoodleDataManager {
     
+    static let DoodleImagesHaveDecodedNotification = NSNotification.Name(rawValue: "DoodleImagesHaveDecodedNotification")
     let doodleURL = "https://public.codesquad.kr/jk/doodle.json"
-    private var doodleImages: [DoodleImage]?
+    private(set) var doodleImages: [DoodleImage]?
     
     init() {
         decodeJSON()
     }
     
-    func fetchImage(index: Int, completion: @escaping (UIImage) -> ()) {
+    func doodleImagesCount() -> Int? {
+        return doodleImages?.count
+    }
+    
+    enum Result<Error> {
+        case data
+        case image
+    }
+    
+    func fetchImage(for index: Int, completion: @escaping (UIImage?, Result<Error>?) -> ()) {
         guard let doodleImage = doodleImages?[index] else { return }
         URLSession.shared.dataTask(with: doodleImage.imageURL) { (data, _, err) in
-            guard let data = data else { return }
-            guard let image = UIImage(data: data) else { return }
-            completion(image)
-        }
+            guard let data = data else {
+                completion(nil, .data)
+                return
+            }
+            guard let image = UIImage(data: data) else { completion(nil, .image); return }
+            completion(image, nil)
+        }.resume()
     }
     
     private func decodeJSON() {
@@ -35,9 +48,10 @@ class DoodleDataManager {
             decoder.dateDecodingStrategy = .formatted(.doodleDateFormatter)
             do {
                 self.doodleImages = try decoder.decode([DoodleImage].self, from: data)
+                NotificationCenter.default.post(name: DoodleDataManager.DoodleImagesHaveDecodedNotification, object: nil)
             } catch {
                 self.doodleImages = nil
             }
-        }
+        }.resume()
     }
 }

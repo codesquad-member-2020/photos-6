@@ -35,7 +35,7 @@ class ViewController: UIViewController {
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self, name: .PhotoLibraryChangedNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: PhotoCollectionViewDataSource.PhotoLibraryChangedNotification, object: nil)
     }
     
     private func setupNavigationBarTitle() {
@@ -48,7 +48,7 @@ class ViewController: UIViewController {
     }
     
     private func setupNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(handlePhotoChanged), name: .PhotoLibraryChangedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handlePhotoChanged), name: PhotoCollectionViewDataSource.PhotoLibraryChangedNotification, object: nil)
     }
     
     @objc private func handlePhotoChanged(notification: Notification) {
