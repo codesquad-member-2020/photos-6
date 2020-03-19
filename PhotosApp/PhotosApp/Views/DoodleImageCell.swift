@@ -14,6 +14,7 @@ class DoodleImageCell: UICollectionViewCell {
     let doodleImageView : UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
+        imageView.layer.masksToBounds = true
         return imageView
     }()
     var doodleImage : UIImage! {
