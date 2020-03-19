@@ -13,7 +13,7 @@ class DoodleCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     private let doodleDataManager = DoodleDataManager()
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let count = doodleDataManager.doodleImages?.count else { return 0 }
+        guard let count = doodleDataManager.doodleImagesCount() else { return 0 }
         return count
     }
     

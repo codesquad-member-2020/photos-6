@@ -18,6 +18,10 @@ class DoodleDataManager {
         decodeJSON()
     }
     
+    func doodleImagesCount() -> Int? {
+        return doodleImages?.count
+    }
+    
     enum Result<Error> {
         case data
         case image
