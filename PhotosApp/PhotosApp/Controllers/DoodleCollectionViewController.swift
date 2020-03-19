@@ -80,7 +80,7 @@ extension DoodleCollectionViewController {
         guard let selectedCell = collectionView.cellForItem(at: indexPath) else { return }
         let menuItem = UIMenuItem(title: "Save", action: #selector(saveImage))
         UIMenuController.shared.menuItems = [menuItem]
-        UIMenuController.shared.showMenu(from: selectedCell, rect: selectedCell.frame)
+        UIMenuController.shared.showMenu(from: selectedCell, rect: selectedCell.contentView.frame)
         selectedCell.becomeFirstResponder()
     }
     
