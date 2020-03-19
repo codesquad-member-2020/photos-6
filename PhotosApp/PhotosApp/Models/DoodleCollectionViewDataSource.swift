@@ -19,8 +19,8 @@ class DoodleCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DoodleImageCell.identifier, for: indexPath) as! DoodleImageCell
-        doodleDataManager.fetchImage(for: indexPath.item) { (doodleImage) in
-            cell.doodleImage = doodleImage
+        doodleDataManager.fetchImage(for: indexPath.item) { (doodleImage, error) in
+            cell.doodleImage = error == nil ? doodleImage : nil
             cell.stopActivityIndicatorView()
         }
         return cell
