@@ -44,7 +44,7 @@ class DoodleCollectionViewController: UICollectionViewController {
     private func setupNotification() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(reloadCollectionView),
-                                               name: .DoodleImagesHaveDecodedNotification,
+                                               name: DoodleDataManager.DoodleImagesHaveDecodedNotification,
                                                object: nil)
     }
     
@@ -55,6 +55,8 @@ class DoodleCollectionViewController: UICollectionViewController {
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self, name: .DoodleImagesHaveDecodedNotification, object: nil)
+        NotificationCenter.default.removeObserver(self,
+                                                  name: DoodleDataManager.DoodleImagesHaveDecodedNotification,
+                                                  object: nil)
     }
 }

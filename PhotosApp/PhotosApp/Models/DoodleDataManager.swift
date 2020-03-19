@@ -10,6 +10,7 @@ import UIKit
 
 class DoodleDataManager {
     
+    static let DoodleImagesHaveDecodedNotification = NSNotification.Name(rawValue: "DoodleImagesHaveDecodedNotification")
     let doodleURL = "https://public.codesquad.kr/jk/doodle.json"
     private(set) var doodleImages: [DoodleImage]?
     
@@ -35,7 +36,7 @@ class DoodleDataManager {
             decoder.dateDecodingStrategy = .formatted(.doodleDateFormatter)
             do {
                 self.doodleImages = try decoder.decode([DoodleImage].self, from: data)
-                NotificationCenter.default.post(name: .DoodleImagesHaveDecodedNotification, object: nil)
+                NotificationCenter.default.post(name: DoodleDataManager.DoodleImagesHaveDecodedNotification, object: nil)
             } catch {
                 self.doodleImages = nil
             }
