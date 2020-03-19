@@ -11,19 +11,19 @@ import UIKit
 class DoodleDataManager {
     
     let doodleURL = "https://public.codesquad.kr/jk/doodle.json"
-    private var doodleImages: [DoodleImage]?
+    private(set) var doodleImages: [DoodleImage]?
     
     init() {
         decodeJSON()
     }
     
-    func fetchImage(index: Int, completion: @escaping (UIImage) -> ()) {
+    func fetchImage(for index: Int, completion: @escaping (UIImage) -> ()) {
         guard let doodleImage = doodleImages?[index] else { return }
         URLSession.shared.dataTask(with: doodleImage.imageURL) { (data, _, err) in
             guard let data = data else { return }
             guard let image = UIImage(data: data) else { return }
             completion(image)
-        }
+        }.resume()
     }
     
     private func decodeJSON() {
@@ -35,9 +35,10 @@ class DoodleDataManager {
             decoder.dateDecodingStrategy = .formatted(.doodleDateFormatter)
             do {
                 self.doodleImages = try decoder.decode([DoodleImage].self, from: data)
+                NotificationCenter.default.post(name: .DoodleImagesHaveDecodedNotification, object: nil)
             } catch {
                 self.doodleImages = nil
             }
-        }
+        }.resume()
     }
 }

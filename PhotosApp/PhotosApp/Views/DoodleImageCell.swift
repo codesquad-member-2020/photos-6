@@ -18,7 +18,9 @@ class DoodleImageCell: UICollectionViewCell {
     }()
     var doodleImage : UIImage! {
         didSet {
-            doodleImageView.image = doodleImage
+            DispatchQueue.main.async {
+                self.doodleImageView.image = self.doodleImage
+            }
         }
     }
     

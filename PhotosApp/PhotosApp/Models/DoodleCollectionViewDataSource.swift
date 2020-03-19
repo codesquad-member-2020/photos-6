@@ -10,12 +10,18 @@ import UIKit
 
 class DoodleCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
+    private let doodleDataManager = DoodleDataManager()
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        guard let count = doodleDataManager.doodleImages?.count else { return 0 }
+        return count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DoodleImageCell.identifier, for: indexPath) as! DoodleImageCell
+        doodleDataManager.fetchImage(for: indexPath.item) { (doodleImage) in
+            cell.doodleImage = doodleImage
+        }
         return cell
     }
 }
