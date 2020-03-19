@@ -23,14 +23,22 @@ class DoodleCollectionViewController: UICollectionViewController {
     }
     
     private func setupCollectionView() {
-        self.collectionView.dataSource = dataSource
-        self.collectionView.delegate = delegateFlowLayout
-        self.collectionView.register(DoodleImageCell.self, forCellWithReuseIdentifier: DoodleImageCell.identifier)
+        collectionView.dataSource = dataSource
+        collectionView.delegate = delegateFlowLayout
+        addLongPressGesture()
+        collectionView.register(DoodleImageCell.self, forCellWithReuseIdentifier: DoodleImageCell.identifier)
+        collectionView.backgroundColor = .darkGray
     }
-
+    
     private func setupNavigationBar() {
         navigationItem.title = navigationBarTitle
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(closeButtonTapped))
+    }
+    
+    private func addLongPressGesture() {
+        let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPressGesture(gesture:)))
+        longPressGestureRecognizer.minimumPressDuration = 0.5
+        self.collectionView.addGestureRecognizer(longPressGestureRecognizer)
     }
     
     @objc func closeButtonTapped() {
@@ -58,5 +66,22 @@ class DoodleCollectionViewController: UICollectionViewController {
         NotificationCenter.default.removeObserver(self,
                                                   name: DoodleDataManager.DoodleImagesHaveDecodedNotification,
                                                   object: nil)
+    }
+}
+
+extension DoodleCollectionViewController {
+    
+    @objc func handleLongPressGesture(gesture: UILongPressGestureRecognizer){
+        let location = gesture.location(in: self.collectionView)
+        guard let indexPath = collectionView.indexPathForItem(at: location) else { return }
+        guard let selectedCell = collectionView.cellForItem(at: indexPath) else { return }
+        let menuItem = UIMenuItem(title: "Save", action: #selector(saveImage))
+        UIMenuController.shared.menuItems = [menuItem]
+        UIMenuController.shared.showMenu(from: selectedCell, rect: selectedCell.frame)
+        selectedCell.becomeFirstResponder()
+    }
+    
+    @objc func saveImage() {
+        
     }
 }

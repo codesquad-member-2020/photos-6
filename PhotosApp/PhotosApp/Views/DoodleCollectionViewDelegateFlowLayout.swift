@@ -16,3 +16,8 @@ class DoodleCollectionViewDelegateFlowLayout: NSObject, UICollectionViewDelegate
         return cellSize
     }
 }
+
+extension DoodleCollectionViewDelegateFlowLayout {
+    @objc func handleLongPressGesture(_ collectionView: UICollectionView, gesture: UIGestureRecognizer){
+    }
+}

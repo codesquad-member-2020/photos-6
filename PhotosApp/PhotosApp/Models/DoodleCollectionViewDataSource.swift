@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Photos
 
 class DoodleCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     

@@ -69,3 +69,8 @@ class DoodleImageCell: UICollectionViewCell {
     }
 }
 
+extension DoodleImageCell {
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
+}
