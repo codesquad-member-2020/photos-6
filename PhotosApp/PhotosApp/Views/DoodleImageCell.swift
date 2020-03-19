@@ -64,6 +64,7 @@ class DoodleImageCell: UICollectionViewCell {
     }
     
     override func prepareForReuse() {
+        doodleImage = nil
         activityIndicatorView.startAnimating()
     }
 }
