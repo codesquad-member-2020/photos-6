@@ -21,6 +21,7 @@ class DoodleCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DoodleImageCell.identifier, for: indexPath) as! DoodleImageCell
         doodleDataManager.fetchImage(for: indexPath.item) { (doodleImage) in
             cell.doodleImage = doodleImage
+            cell.stopActivityIndicatorView()
         }
         return cell
     }
