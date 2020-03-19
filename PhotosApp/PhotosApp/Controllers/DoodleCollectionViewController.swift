@@ -18,6 +18,7 @@ class DoodleCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         setupCollectionView()
         setupNavigationBar()
+        setupNotification()
         setupUI()
     }
     
@@ -38,5 +39,22 @@ class DoodleCollectionViewController: UICollectionViewController {
     
     private func setupUI() {
         self.collectionView.backgroundColor = .darkGray
+    }
+    
+    private func setupNotification() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(reloadCollectionView),
+                                               name: .DoodleImagesHaveDecodedNotification,
+                                               object: nil)
+    }
+    
+    @objc private func reloadCollectionView(notification: Notification) {
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .DoodleImagesHaveDecodedNotification, object: nil)
     }
 }

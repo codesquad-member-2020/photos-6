@@ -10,4 +10,5 @@ import Foundation
 
 extension NSNotification.Name {
     static let PhotoLibraryChangedNotification = NSNotification.Name(rawValue: "PhotoLibraryChangedNotification")
+    static let DoodleImagesHaveDecodedNotification = NSNotification.Name(rawValue: "DoodleImagesHaveDecodedNotification")
 }
