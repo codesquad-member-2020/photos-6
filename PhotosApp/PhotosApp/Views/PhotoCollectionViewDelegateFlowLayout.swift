@@ -31,7 +31,7 @@ class PhotoCollectionViewDelegateFlowLayout: NSObject, UICollectionViewDelegateF
     }
     
     private func postNotification(count: Int?, indexPath: IndexPath, isDeselected: Bool) {
-        NotificationCenter.default.post(name: PhotoCollectionViewDelegateFlowLayout.SelectedItemsCountHasChanged,
+        NotificationCenter.default.post(name: Self.SelectedItemsCountHasChanged,
         object: nil,
         userInfo: ["count": count ?? 0, "index": indexPath.item, "isDeselected": isDeselected])
     }
