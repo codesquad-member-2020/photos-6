@@ -10,6 +10,8 @@ import UIKit
 
 class PhotoCellSelectedBackgroundVIew: UIView {
 
+    private let keyColorName = "KeyColor"
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -21,7 +23,8 @@ class PhotoCellSelectedBackgroundVIew: UIView {
     }
     
     private func setupUI() {
-        layer.borderColor = CGColor.keyColor
+        guard let keyColor = UIColor(named: keyColorName) else { return }
+        layer.borderColor = keyColor.cgColor
         layer.borderWidth = 4
         backgroundColor = .clear
     }
