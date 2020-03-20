@@ -27,9 +27,6 @@ class PhotoCollectionViewDelegateFlowLayout: NSObject, UICollectionViewDelegateF
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! PhotoCell
-        cell.selectedBackgroundView = PhotoCellSelectedBackgroundVIew(frame: cell.frame)
-        cell.bringSubviewToFront(cell.selectedBackgroundView!)
         postNotification(with: collectionView.indexPathsForSelectedItems?.count)
     }
     
