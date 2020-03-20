@@ -23,16 +23,16 @@ class PhotoCollectionViewDelegateFlowLayout: NSObject, UICollectionViewDelegateF
         let cell = collectionView.cellForItem(at: indexPath) as! PhotoCell
         cell.selectedBackgroundView = PhotoCellSelectedBackgroundVIew(frame: cell.frame)
         cell.bringSubviewToFront(cell.selectedBackgroundView!)
-        postNotification(with: collectionView.indexPathsForSelectedItems?.count)
+        postNotification(count: collectionView.indexPathsForSelectedItems?.count, indexPath: indexPath, isDeselected: false)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        postNotification(with: collectionView.indexPathsForSelectedItems?.count)
+        postNotification(count: collectionView.indexPathsForSelectedItems?.count, indexPath: indexPath, isDeselected: true)
     }
     
-    private func postNotification(with count: Int?) {
+    private func postNotification(count: Int?, indexPath: IndexPath, isDeselected: Bool) {
         NotificationCenter.default.post(name: PhotoCollectionViewDelegateFlowLayout.SelectedItemsCountHasChanged,
         object: nil,
-        userInfo: ["count": count ?? 0])
+        userInfo: ["count": count ?? 0, "index": indexPath.item, "isDeselected": isDeselected])
     }
 }

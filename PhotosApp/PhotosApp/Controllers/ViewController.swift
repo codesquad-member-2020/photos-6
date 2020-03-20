@@ -18,7 +18,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
     @IBAction func addImageButtonTapped(_ sender: UIBarButtonItem) {
-        dataSource.addImage()
+//        dataSource.addImage()
+        print(photoCollectionView.indexPathsForSelectedItems)
     }
     
     @IBAction func presentDoodleCollectionViewController(_ sender: UIBarButtonItem) {
@@ -71,6 +72,9 @@ class ViewController: UIViewController {
     
     @objc private func handlSelectedChanged(notification: Notification) {
         guard let count = notification.userInfo?["count"] as? Int else { return }
+        guard let index = notification.userInfo?["index"] as? Int else { return }
+        guard let isDeselected = notification.userInfo?["isDeselected"] as? Bool else { return }
+        
         doneButton.isEnabled = count >= PhotoCollectionViewDelegateFlowLayout.minimnumNumberForVideo
     }
     
