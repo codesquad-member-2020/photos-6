@@ -15,9 +15,8 @@ class ViewController: UIViewController {
     private let dataSource = PhotoCollectionViewDataSource()
     private let navigationBarTitle = "Photos"
     static let minimumItemSpacing: CGFloat = 2
-    
-    @IBAction func closeButtonTapped(_ sender: UIBarButtonItem) {
-    }
+    private var selectedCellIndexQueue = SelectedIndexQueue()
+    @IBOutlet weak var doneButton: UIBarButtonItem!
     
     @IBAction func presentDoodleCollectionViewController(_ sender: UIBarButtonItem) {
         let layout = UICollectionViewFlowLayout()
@@ -32,10 +31,12 @@ class ViewController: UIViewController {
         setupCollectionView()
         setupNavigationBarTitle()
         setupNotification()
+        setupPropertiesConfiguration()
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self, name: PhotoCollectionViewDataSource.PhotoLibraryChangedNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: PhotoCollectionViewDelegateFlowLayout.SelectedItemsCountHasChanged, object: nil)
     }
     
     private func setupNavigationBarTitle() {
@@ -58,6 +59,23 @@ class ViewController: UIViewController {
     
     private func setupNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(handlePhotoChanged), name: PhotoCollectionViewDataSource.PhotoLibraryChangedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handlSelectedChanged), name: PhotoCollectionViewDelegateFlowLayout.SelectedItemsCountHasChanged, object: nil)
+    }
+    
+    private func setupPropertiesConfiguration() {
+        doneButton.isEnabled = false
+    }
+    
+    private func updateSelectedCellIndexQueue(index: Int, isDeselected: Bool) {
+        selectedCellIndexQueue.updateChanged(index: index, isDeselected: isDeselected)
+    }
+    
+    @objc private func handlSelectedChanged(notification: Notification) {
+        guard let count = notification.userInfo?["count"] as? Int else { return }
+        guard let index = notification.userInfo?["index"] as? Int else { return }
+        guard let isDeselected = notification.userInfo?["isDeselected"] as? Bool else { return }
+        updateSelectedCellIndexQueue(index: index, isDeselected: isDeselected)
+        doneButton.isEnabled = count >= PhotoCollectionViewDelegateFlowLayout.minimnumNumberForVideo
     }
     
     @objc private func handlePhotoChanged(notification: Notification) {
