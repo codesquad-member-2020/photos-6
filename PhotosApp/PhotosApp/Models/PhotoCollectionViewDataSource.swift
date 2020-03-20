@@ -51,12 +51,6 @@ class PhotoCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         }
         return cell
     }
-    
-    func addImage() {
-        PHPhotoLibrary.shared().performChanges({
-            PHAssetChangeRequest.creationRequestForAsset(from: #imageLiteral(resourceName: "codesquad"))
-        }, completionHandler: nil)
-    }
 }
 
 extension PhotoCollectionViewDataSource: PHPhotoLibraryChangeObserver{

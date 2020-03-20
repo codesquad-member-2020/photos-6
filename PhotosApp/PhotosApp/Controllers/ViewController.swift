@@ -18,8 +18,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
     @IBAction func addImageButtonTapped(_ sender: UIBarButtonItem) {
-//        dataSource.addImage()
-        print(photoCollectionView.indexPathsForSelectedItems)
+        // dataSource 쪽에서 처리 구현 예정
     }
     
     @IBAction func presentDoodleCollectionViewController(_ sender: UIBarButtonItem) {
