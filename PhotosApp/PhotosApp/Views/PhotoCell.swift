@@ -23,4 +23,9 @@ class PhotoCell: UICollectionViewCell {
             livePhotoBadgeImageView.image = livePhotoBadgeImage
         }
     }
+    
+    override func prepareForReuse() {
+        thumbnailImage = nil
+        livePhotoBadgeImage = nil
+    }
 }
