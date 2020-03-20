@@ -36,16 +36,26 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fx8-mh-qGK">
                                                     <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                 </imageView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cJd-KC-wjA">
+                                                    <rect key="frame" x="52" y="0.0" width="28" height="28"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="cJd-KC-wjA" secondAttribute="height" multiplier="1:1" id="lC7-y4-kAo"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="fx8-mh-qGK" secondAttribute="trailing" id="Jah-Yc-zwE"/>
                                                 <constraint firstAttribute="bottom" secondItem="fx8-mh-qGK" secondAttribute="bottom" id="Qdi-wT-cop"/>
                                                 <constraint firstItem="fx8-mh-qGK" firstAttribute="top" secondItem="hFH-q4-Xgu" secondAttribute="top" id="Vhg-5X-Gnt"/>
+                                                <constraint firstItem="cJd-KC-wjA" firstAttribute="trailing" secondItem="fx8-mh-qGK" secondAttribute="trailing" id="gGk-Nw-pys"/>
                                                 <constraint firstItem="fx8-mh-qGK" firstAttribute="leading" secondItem="hFH-q4-Xgu" secondAttribute="leading" id="hFc-nm-Upt"/>
+                                                <constraint firstItem="cJd-KC-wjA" firstAttribute="top" secondItem="fx8-mh-qGK" secondAttribute="top" id="olb-ky-i6C"/>
+                                                <constraint firstItem="cJd-KC-wjA" firstAttribute="width" secondItem="fx8-mh-qGK" secondAttribute="width" multiplier="0.35" id="uNM-qp-b7F"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="80" height="80"/>
                                         <connections>
+                                            <outlet property="livePhotoBadgeImageView" destination="cJd-KC-wjA" id="NY0-17-N68"/>
                                             <outlet property="thumbnailImageView" destination="fx8-mh-qGK" id="Kd1-Fx-phn"/>
                                         </connections>
                                     </collectionViewCell>
@@ -67,7 +77,11 @@
                                 <action selector="presentDoodleCollectionViewController:" destination="BYZ-38-t0r" id="V1p-Dl-N3W"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Add" id="s16-5p-UmU"/>
+                        <barButtonItem key="rightBarButtonItem" title="Close" id="s16-5p-UmU">
+                            <connections>
+                                <action selector="closeButtonTapped:" destination="BYZ-38-t0r" id="3l4-kz-jyo"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="doneButton" destination="s16-5p-UmU" id="rOd-L4-hlY"/>
