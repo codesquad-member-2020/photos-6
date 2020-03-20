@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     private let dataSource = PhotoCollectionViewDataSource()
     private let navigationBarTitle = "Photos"
     static let minimumItemSpacing: CGFloat = 2
+    @IBOutlet weak var doneButton: UIBarButtonItem!
     
     @IBAction func addImageButtonTapped(_ sender: UIBarButtonItem) {
         dataSource.addImage()
@@ -33,10 +34,12 @@ class ViewController: UIViewController {
         setupCollectionView()
         setupNavigationBarTitle()
         setupNotification()
+        setupPropertiesConfiguration()
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self, name: PhotoCollectionViewDataSource.PhotoLibraryChangedNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: PhotoCollectionViewDelegateFlowLayout.SelectedItemsCountHasChanged, object: nil)
     }
     
     private func setupNavigationBarTitle() {
@@ -59,6 +62,16 @@ class ViewController: UIViewController {
     
     private func setupNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(handlePhotoChanged), name: PhotoCollectionViewDataSource.PhotoLibraryChangedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handlSelectedChanged), name: PhotoCollectionViewDelegateFlowLayout.SelectedItemsCountHasChanged, object: nil)
+    }
+    
+    private func setupPropertiesConfiguration() {
+        doneButton.isEnabled = false
+    }
+    
+    @objc private func handlSelectedChanged(notification: Notification) {
+        guard let count = notification.userInfo?["count"] as? Int else { return }
+        doneButton.isEnabled = count >= PhotoCollectionViewDelegateFlowLayout.minimnumNumberForVideo
     }
     
     @objc private func handlePhotoChanged(notification: Notification) {
