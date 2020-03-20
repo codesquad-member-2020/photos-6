@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     private let dataSource = PhotoCollectionViewDataSource()
     private let navigationBarTitle = "Photos"
     static let minimumItemSpacing: CGFloat = 2
+    private var selectedCellIndexQueue = SelectedIndexQueue()
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
     @IBAction func addImageButtonTapped(_ sender: UIBarButtonItem) {
@@ -69,11 +70,15 @@ class ViewController: UIViewController {
         doneButton.isEnabled = false
     }
     
+    private func updateSelectedCellIndexQueue(index: Int, isDeselected: Bool) {
+        selectedCellIndexQueue.updateChanged(index: index, isDeselected: isDeselected)
+    }
+    
     @objc private func handlSelectedChanged(notification: Notification) {
         guard let count = notification.userInfo?["count"] as? Int else { return }
         guard let index = notification.userInfo?["index"] as? Int else { return }
         guard let isDeselected = notification.userInfo?["isDeselected"] as? Bool else { return }
-        
+        updateSelectedCellIndexQueue(index: index, isDeselected: isDeselected)
         doneButton.isEnabled = count >= PhotoCollectionViewDelegateFlowLayout.minimnumNumberForVideo
     }
     
