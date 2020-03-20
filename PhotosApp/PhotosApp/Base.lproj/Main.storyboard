@@ -77,9 +77,9 @@
                                 <action selector="presentDoodleCollectionViewController:" destination="BYZ-38-t0r" id="V1p-Dl-N3W"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Add" id="s16-5p-UmU">
+                        <barButtonItem key="rightBarButtonItem" title="Close" id="s16-5p-UmU">
                             <connections>
-                                <action selector="addImageButtonTapped:" destination="BYZ-38-t0r" id="3l4-kz-jyo"/>
+                                <action selector="closeButtonTapped:" destination="BYZ-38-t0r" id="3l4-kz-jyo"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

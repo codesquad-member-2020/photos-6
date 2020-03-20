@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     private let navigationBarTitle = "Photos"
     static let minimumItemSpacing: CGFloat = 2
     
-    @IBAction func addImageButtonTapped(_ sender: UIBarButtonItem) {
+    @IBAction func closeButtonTapped(_ sender: UIBarButtonItem) {
     }
     
     @IBAction func presentDoodleCollectionViewController(_ sender: UIBarButtonItem) {
