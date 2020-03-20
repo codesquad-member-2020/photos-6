@@ -36,6 +36,7 @@ class DoodleCollectionViewController: UICollectionViewController {
     private func setupNavigationBar() {
         navigationItem.title = navigationBarTitle
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(closeButtonTapped))
+        navigationItem.rightBarButtonItem?.tintColor = UIColor(named: "KeyColor")
     }
     
     private func setupGestureRecognizer() {
