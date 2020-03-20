@@ -18,10 +18,6 @@ class ViewController: UIViewController {
     private var selectedCellIndexQueue = SelectedIndexQueue()
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
-    @IBAction func addImageButtonTapped(_ sender: UIBarButtonItem) {
-        // dataSource 쪽에서 처리 구현 예정
-    }
-    
     @IBAction func presentDoodleCollectionViewController(_ sender: UIBarButtonItem) {
         let layout = UICollectionViewFlowLayout()
         let doodleCollectionView = DoodleCollectionViewController(collectionViewLayout: layout)
