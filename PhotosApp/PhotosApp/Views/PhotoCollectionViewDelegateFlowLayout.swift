@@ -19,13 +19,7 @@ class PhotoCollectionViewDelegateFlowLayout: NSObject, UICollectionViewDelegateF
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! PhotoCell
-        cell.selectedBackgroundView = {
-            let backgroundView = UIView()
-            backgroundView.layer.borderColor = #colorLiteral(red: 0.2784313725, green: 0.7176470588, blue: 0.5294117647, alpha: 1)
-            backgroundView.layer.borderWidth = 4
-            backgroundView.backgroundColor = .clear
-            return backgroundView
-        }()
+        cell.selectedBackgroundView = PhotoCellSelectedBackgroundVIew(frame: cell.frame)
         cell.bringSubviewToFront(cell.selectedBackgroundView!)
     }
 }
