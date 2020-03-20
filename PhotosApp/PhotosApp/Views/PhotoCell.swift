@@ -11,10 +11,16 @@ import UIKit
 class PhotoCell: UICollectionViewCell {
     
     @IBOutlet weak var thumbnailImageView: UIImageView!
+    @IBOutlet weak var livePhotoBadgeImageView: UIImageView!
     static let identifier = "photoCell"
     var thumbnailImage : UIImage! {
         didSet {
             thumbnailImageView.image = thumbnailImage
+        }
+    }
+    var livePhotoBadgeImage : UIImage! {
+        didSet {
+            livePhotoBadgeImageView.image = livePhotoBadgeImage
         }
     }
 }

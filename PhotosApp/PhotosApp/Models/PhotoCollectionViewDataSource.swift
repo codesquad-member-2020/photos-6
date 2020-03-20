@@ -8,6 +8,7 @@
 
 import UIKit
 import Photos
+import PhotosUI
 
 class PhotoCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
@@ -46,6 +47,10 @@ class PhotoCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.identifier, for: indexPath) as! PhotoCell
         let asset = fetchResult.object(at: indexPath.item)
+        if asset.mediaSubtypes == .photoLive {
+            let livePhotoBadge = PHLivePhotoView.livePhotoBadgeImage(options: .overContent)
+            cell.livePhotoBadgeImage = livePhotoBadge
+        }
         imageManager.requestImage(for: asset, targetSize: targetSize, contentMode: .aspectFill, options: nil) { (image, _) in
             cell.thumbnailImage = image
         }
