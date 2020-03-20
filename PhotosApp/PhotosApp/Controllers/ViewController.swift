@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     private let delegateFlowLayout = PhotoCollectionViewDelegateFlowLayout()
     private let dataSource = PhotoCollectionViewDataSource()
     private let navigationBarTitle = "Photos"
+    static let minimumItemSpacing: CGFloat = 2
     
     @IBAction func addImageButtonTapped(_ sender: UIBarButtonItem) {
         dataSource.addImage()
@@ -45,6 +46,15 @@ class ViewController: UIViewController {
     private func setupCollectionView() {
         photoCollectionView.dataSource = dataSource
         photoCollectionView.delegate = delegateFlowLayout
+        photoCollectionView.allowsMultipleSelection = true
+        setupCollectionViewLayout()
+    }
+    
+    private func setupCollectionViewLayout() {
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = ViewController.minimumItemSpacing
+        layout.minimumInteritemSpacing = ViewController.minimumItemSpacing
+        photoCollectionView.collectionViewLayout = layout
     }
     
     private func setupNotification() {

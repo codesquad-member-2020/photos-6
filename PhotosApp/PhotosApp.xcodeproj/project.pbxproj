@@ -16,6 +16,7 @@
 		38CCC2A02421A74400E12D82 /* DoodleDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CCC29F2421A74400E12D82 /* DoodleDataManager.swift */; };
 		38CCC2A22421B80700E12D82 /* DoodleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CCC2A12421B80700E12D82 /* DoodleImage.swift */; };
 		38CCC2A42421B81F00E12D82 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CCC2A32421B81F00E12D82 /* DateFormatter.swift */; };
+		38D64AFD24245CE80047D694 /* PhotoCellSelectedBackgroundVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D64AFC24245CE80047D694 /* PhotoCellSelectedBackgroundVIew.swift */; };
 		6A067F742421F5BF005A3701 /* DoodleCollectionViewDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A067F732421F5BF005A3701 /* DoodleCollectionViewDelegateFlowLayout.swift */; };
 		6A067F762421F762005A3701 /* DoodleCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A067F752421F762005A3701 /* DoodleCollectionViewDataSource.swift */; };
 		6A067F782421FB15005A3701 /* DoodleImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A067F772421FB15005A3701 /* DoodleImageCell.swift */; };
@@ -37,6 +38,7 @@
 		38CCC29F2421A74400E12D82 /* DoodleDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoodleDataManager.swift; sourceTree = "<group>"; };
 		38CCC2A12421B80700E12D82 /* DoodleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoodleImage.swift; sourceTree = "<group>"; };
 		38CCC2A32421B81F00E12D82 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		38D64AFC24245CE80047D694 /* PhotoCellSelectedBackgroundVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCellSelectedBackgroundVIew.swift; sourceTree = "<group>"; };
 		6A067F732421F5BF005A3701 /* DoodleCollectionViewDelegateFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoodleCollectionViewDelegateFlowLayout.swift; sourceTree = "<group>"; };
 		6A067F752421F762005A3701 /* DoodleCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoodleCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		6A067F772421FB15005A3701 /* DoodleImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoodleImageCell.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				6A559D922420A20D00028232 /* PhotoCollectionViewDelegateFlowLayout.swift */,
 				6A067F732421F5BF005A3701 /* DoodleCollectionViewDelegateFlowLayout.swift */,
 				6A067F772421FB15005A3701 /* DoodleImageCell.swift */,
+				38D64AFC24245CE80047D694 /* PhotoCellSelectedBackgroundVIew.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 				38CCC2A42421B81F00E12D82 /* DateFormatter.swift in Sources */,
 				380348EC241F44CB002C91FC /* AppDelegate.swift in Sources */,
 				6A067F762421F762005A3701 /* DoodleCollectionViewDataSource.swift in Sources */,
+				38D64AFD24245CE80047D694 /* PhotoCellSelectedBackgroundVIew.swift in Sources */,
 				6A1FB8A8241F48D000483229 /* PhotoCollectionViewDataSource.swift in Sources */,
 				380348EE241F44CB002C91FC /* SceneDelegate.swift in Sources */,
 				38CCC2A02421A74400E12D82 /* DoodleDataManager.swift in Sources */,

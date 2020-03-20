@@ -10,9 +10,16 @@ import UIKit
 
 class PhotoCollectionViewDelegateFlowLayout: NSObject, UICollectionViewDelegateFlowLayout {
     
-    let cellSize = CGSize(width: 100, height: 100)
+    private let numberOfItemsInRow: CGFloat = 3
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return cellSize
+        let width = (collectionView.frame.size.width - ViewController.minimumItemSpacing * 2) / numberOfItemsInRow
+        return CGSize(width: width, height: width)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! PhotoCell
+        cell.selectedBackgroundView = PhotoCellSelectedBackgroundVIew(frame: cell.frame)
+        cell.bringSubviewToFront(cell.selectedBackgroundView!)
     }
 }
