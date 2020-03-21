@@ -21,8 +21,8 @@ class PhotoLibraryController: UIViewController {
     
     @IBAction func presentDoodleCollectionViewController(_ sender: UIBarButtonItem) {
         let layout = UICollectionViewFlowLayout()
-        let doodleCollectionView = DoodleCollectionViewController(collectionViewLayout: layout)
-        let navigationController = UINavigationController(rootViewController: doodleCollectionView)
+        let doodleCollectionViewController = DoodleCollectionViewController(collectionViewLayout: layout)
+        let navigationController = UINavigationController(rootViewController: doodleCollectionViewController)
         navigationController.modalPresentationStyle = .overFullScreen
         self.present(navigationController, animated: true)
     }
