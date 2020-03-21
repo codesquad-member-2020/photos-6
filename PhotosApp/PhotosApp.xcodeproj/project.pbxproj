@@ -106,11 +106,8 @@
 		382CA0222420A98E00A297AB /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				6A1FB8A7241F48D000483229 /* PhotoCollectionViewDataSource.swift */,
-				6A067F752421F762005A3701 /* DoodleCollectionViewDataSource.swift */,
-				38CCC29F2421A74400E12D82 /* DoodleDataManager.swift */,
-				38CCC2A12421B80700E12D82 /* DoodleImage.swift */,
-				38D64B04242499180047D694 /* SelectedIndexQueue.swift */,
+				38860AF42426568B0042270D /* DoodleCollection */,
+				38860AF32426567F0042270D /* PhotoLibrary */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -118,13 +115,48 @@
 		382CA0232420A99700A297AB /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				6A1FB8A9241F54B800483229 /* PhotoCell.swift */,
-				6A559D922420A20D00028232 /* PhotoCollectionViewDelegateFlowLayout.swift */,
-				6A067F732421F5BF005A3701 /* DoodleCollectionViewDelegateFlowLayout.swift */,
-				6A067F772421FB15005A3701 /* DoodleImageCell.swift */,
-				38D64AFC24245CE80047D694 /* PhotoCellSelectedBackgroundVIew.swift */,
+				38860AF2242656730042270D /* DoodleCollection */,
+				38860AF1242656650042270D /* PhotoLibrary */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		38860AF1242656650042270D /* PhotoLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				6A1FB8A9241F54B800483229 /* PhotoCell.swift */,
+				6A559D922420A20D00028232 /* PhotoCollectionViewDelegateFlowLayout.swift */,
+				38D64AFC24245CE80047D694 /* PhotoCellSelectedBackgroundVIew.swift */,
+			);
+			path = PhotoLibrary;
+			sourceTree = "<group>";
+		};
+		38860AF2242656730042270D /* DoodleCollection */ = {
+			isa = PBXGroup;
+			children = (
+				6A067F732421F5BF005A3701 /* DoodleCollectionViewDelegateFlowLayout.swift */,
+				6A067F772421FB15005A3701 /* DoodleImageCell.swift */,
+			);
+			path = DoodleCollection;
+			sourceTree = "<group>";
+		};
+		38860AF32426567F0042270D /* PhotoLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				6A1FB8A7241F48D000483229 /* PhotoCollectionViewDataSource.swift */,
+				38D64B04242499180047D694 /* SelectedIndexQueue.swift */,
+			);
+			path = PhotoLibrary;
+			sourceTree = "<group>";
+		};
+		38860AF42426568B0042270D /* DoodleCollection */ = {
+			isa = PBXGroup;
+			children = (
+				6A067F752421F762005A3701 /* DoodleCollectionViewDataSource.swift */,
+				38CCC29F2421A74400E12D82 /* DoodleDataManager.swift */,
+				38CCC2A12421B80700E12D82 /* DoodleImage.swift */,
+			);
+			path = DoodleCollection;
 			sourceTree = "<group>";
 		};
 		6A78D8052420D39100A27BDE /* Extensions */ = {
