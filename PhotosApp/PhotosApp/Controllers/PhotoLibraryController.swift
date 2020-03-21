@@ -17,6 +17,7 @@ class PhotoLibraryController: UIViewController {
     static let minimumItemSpacing: CGFloat = 2
     private var selectedCellIndexQueue = SelectedIndexQueue()
     @IBOutlet weak var doneButton: DoneButton!
+    @IBOutlet weak var doodleButton: DoodleButton!
     
     @IBAction func presentDoodleCollectionViewController(_ sender: UIBarButtonItem) {
         let layout = UICollectionViewFlowLayout()
@@ -71,6 +72,7 @@ class PhotoLibraryController: UIViewController {
         guard let isDeselected = notification.userInfo?["isDeselected"] as? Bool else { return }
         updateSelectedCellIndexQueue(index: index, isDeselected: isDeselected)
         doneButton.numberOfSelectedPhotos = count
+        doodleButton.numberOfSelectedPhotos = count
     }
     
     @objc private func handlePhotoChanged(notification: Notification) {
