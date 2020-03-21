@@ -15,7 +15,7 @@ class PhotoCollectionViewDelegateFlowLayout: NSObject, UICollectionViewDelegateF
     static let SelectedItemsCountHasChanged = NSNotification.Name(rawValue: "SelectedItemsCountHasChanged")
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (collectionView.frame.size.width - ViewController.minimumItemSpacing * 2) / numberOfItemsInRow
+        let width = (collectionView.frame.size.width - PhotoLibraryController.minimumItemSpacing * 2) / numberOfItemsInRow
         return CGSize(width: width, height: width)
     }
     

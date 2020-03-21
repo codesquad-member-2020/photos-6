@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class PhotoLibraryController: UIViewController {
     
     @IBOutlet weak var photoCollectionView: UICollectionView!
     private let delegateFlowLayout = PhotoCollectionViewDelegateFlowLayout()
@@ -52,8 +52,8 @@ class ViewController: UIViewController {
     
     private func setupCollectionViewLayout() {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = ViewController.minimumItemSpacing
-        layout.minimumInteritemSpacing = ViewController.minimumItemSpacing
+        layout.minimumLineSpacing = PhotoLibraryController.minimumItemSpacing
+        layout.minimumInteritemSpacing = PhotoLibraryController.minimumItemSpacing
         photoCollectionView.collectionViewLayout = layout
     }
     
