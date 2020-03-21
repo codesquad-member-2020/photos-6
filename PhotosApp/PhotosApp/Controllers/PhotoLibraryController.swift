@@ -15,7 +15,7 @@ class PhotoLibraryController: UIViewController {
     private let dataSource = PhotoCollectionViewDataSource()
     private let navigationBarTitle = "Photos"
     static let minimumItemSpacing: CGFloat = 2
-    private var selectedCellIndexQueue = SelectedIndexQueue()
+    private var selectedIndexQueue = SelectedIndexQueue()
     @IBOutlet weak var doneButton: DoneButton!
     @IBOutlet weak var doodleButton: DoodleButton!
     
@@ -62,15 +62,15 @@ class PhotoLibraryController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(handlSelectedChanged), name: PhotoCollectionViewDelegateFlowLayout.SelectedItemsCountHasChanged, object: nil)
     }
     
-    private func updateSelectedCellIndexQueue(index: Int, isDeselected: Bool) {
-        selectedCellIndexQueue.updateChanged(index: index, isDeselected: isDeselected)
+    private func updateSelectedIndexQueue(index: Int, isDeselected: Bool) {
+        selectedIndexQueue.updateChanged(index: index, isDeselected: isDeselected)
     }
     
     @objc private func handlSelectedChanged(notification: Notification) {
         guard let count = notification.userInfo?["count"] as? Int else { return }
         guard let index = notification.userInfo?["index"] as? Int else { return }
         guard let isDeselected = notification.userInfo?["isDeselected"] as? Bool else { return }
-        updateSelectedCellIndexQueue(index: index, isDeselected: isDeselected)
+        updateSelectedIndexQueue(index: index, isDeselected: isDeselected)
         doneButton.numberOfSelectedPhotos = count
         doodleButton.numberOfSelectedPhotos = count
     }
