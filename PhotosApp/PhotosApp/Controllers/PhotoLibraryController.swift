@@ -16,7 +16,7 @@ class PhotoLibraryController: UIViewController {
     private let navigationBarTitle = "Photos"
     static let minimumItemSpacing: CGFloat = 2
     private var selectedCellIndexQueue = SelectedIndexQueue()
-    @IBOutlet weak var doneButton: UIBarButtonItem!
+    @IBOutlet weak var doneButton: DoneButton!
     
     @IBAction func presentDoodleCollectionViewController(_ sender: UIBarButtonItem) {
         let layout = UICollectionViewFlowLayout()
@@ -31,7 +31,6 @@ class PhotoLibraryController: UIViewController {
         setupCollectionView()
         setupNavigationBarTitle()
         setupNotification()
-        setupPropertiesConfiguration()
     }
     
     deinit {
@@ -62,10 +61,6 @@ class PhotoLibraryController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(handlSelectedChanged), name: PhotoCollectionViewDelegateFlowLayout.SelectedItemsCountHasChanged, object: nil)
     }
     
-    private func setupPropertiesConfiguration() {
-        doneButton.isEnabled = false
-    }
-    
     private func updateSelectedCellIndexQueue(index: Int, isDeselected: Bool) {
         selectedCellIndexQueue.updateChanged(index: index, isDeselected: isDeselected)
     }
@@ -75,7 +70,7 @@ class PhotoLibraryController: UIViewController {
         guard let index = notification.userInfo?["index"] as? Int else { return }
         guard let isDeselected = notification.userInfo?["isDeselected"] as? Bool else { return }
         updateSelectedCellIndexQueue(index: index, isDeselected: isDeselected)
-        doneButton.isEnabled = count >= PhotoCollectionViewDelegateFlowLayout.minimnumNumberForVideo
+        doneButton.numberOfSelectedPhotos = count
     }
     
     @objc private func handlePhotoChanged(notification: Notification) {
