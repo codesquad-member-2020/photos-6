@@ -10,9 +10,9 @@ import UIKit
 
 class DoneButton: UIBarButtonItem {
     
-    var numberOfSelectedPhotos: Int! {
+    var numberOfSelectedPhotos: Int! = 0 {
         didSet {
-            isEnabled = numberOfSelectedPhotos >= 3 ? true : false
+            isEnabled = numberOfSelectedPhotos >= PhotoCollectionViewDelegateFlowLayout.minimnumNumberForVideo ? true : false
         }
     }
 }
